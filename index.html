@@ -25,9 +25,18 @@
                 Try to answer the following code-related questions within the time limit.Keep in mind that incorrect <br>
                 answers will penolize your score time by the seconds.
             </p>
-            <button id="start" class="btn" onclick="startGame()">Start Quize</button>
+            <button id="start" class="btn" onclick="startBtn()">Start Quize</button>
         </div>
-      
+        <div id="question" class="hide">
+
+        </div>
+      <div id="answer-buttons">
+        <button  class="answer-btn" onclick="handleAnswerClick(event)"></button>
+        <button  class="answer-btn" onclick="handleAnswerClick(event)"></button>
+        <button  class="answer-btn" onclick="handleAnswerClick(event)"></button>
+        <button  class="answer-btn" onclick="handleAnswerClick(event)"></button>
+
+      </div>
     </div>
    
     <script src="./Assets/js/script.js"></script> 

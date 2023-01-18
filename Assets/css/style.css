@@ -30,11 +30,36 @@ header {
 
 .btn {
     border: 3px solid ;
-    border-radius: 1px;
+    border-radius: 5px;
     background-color: purple;
-    padding: 10px 15px;
+    padding: 10px 20px;
     margin:0 auto;
     color: white;
     font-size: medium;
+   
     
 }
+.answer-btn {
+    border: 3px solid ;
+    border-radius: 5px;
+    background-color: purple;
+    padding: 10px 20px;
+    margin:0 auto;
+    color: white;
+    font-size: medium;
+    display: grid;
+    grid-template-columns: repeat(2 ,auto);
+    gap: 5px;
+   }
+   .btn:hover {
+    color: black;
+   }
+   .answer-btn:hover{
+    color: black;
+   }
+   .btn.correct {
+    --hue:var(--hue-correct);
+   }
+   .btn.wrong {
+    --hue: var(--hue-wrong);
+   }
