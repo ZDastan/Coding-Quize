@@ -26,7 +26,7 @@ const question = [
         {text:'all of the above',correct:true}
       ]
 
-}
+},
   
 
   ]

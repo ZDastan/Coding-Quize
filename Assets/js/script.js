@@ -28,13 +28,13 @@ function showQuestion(question){
   question.answer.forEach(answer =>{
     const button = document.createElement('button')
     button.classList.add('btn')
+    button.innerHTML = answer.text
     if(answer.correct){
       button.dataset.correct = answer.correct
     }
     button.addEventListener('click', selectAnswer)
     answerButtonsElement.appendChild(button)
   })
-
 }
 
 function selectAnswer() {
