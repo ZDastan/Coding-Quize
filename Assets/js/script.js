@@ -20,7 +20,7 @@ setNextQuestion()
 
 function setNextQuestion() {
   
-  showQuestion(shuffledQuestion[currentQuestionIndex])
+  showQuestion(shuffledQuestions[currentQuestionIndex]);
 
 }
 function showQuestion(question){

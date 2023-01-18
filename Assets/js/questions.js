@@ -16,5 +16,17 @@ const question = [
             {text:'paranthesas',correct:true},
             {text:'square brakets',correct:false}
           ]
-    }
+    },
+{
+    question :'Arrays in JavaScript can be used to store _.',
+    answer :[
+        {text:'numbers and strings',correct:false},
+        {text:'other arrays',correct:false},
+        {text:'booleans',correct:false},
+        {text:'all of the above',correct:true}
+      ]
+
+}
+  
+
   ]
