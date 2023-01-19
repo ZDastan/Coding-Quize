@@ -59,7 +59,6 @@ function clearStatusClass(element){
   element.classList.remove('wrong')
 }
 
-startButton.onclick = startQuiz
 
 
 
