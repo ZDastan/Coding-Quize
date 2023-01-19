@@ -63,3 +63,6 @@ header {
    .btn.wrong {
     --hue: var(--hue-wrong);
    }
+   .hide{
+    display: none;
+   }
