@@ -11,16 +11,24 @@ body{
     height: 100vh;
     background-color: #fff;
 }
-header {
+header{
     width: 100%;
     padding: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 40px auto;
     display: flex;
     align-items:right ;
     justify-content: space-between;
    font-weight: bold;
-  
 }
+time-start{
+    display:flex ;
+    align-items:right ;
+    justify-content: space-between;
+   font-weight: bold;
+   
+}
+
+
 .card{
     justify-content: center;
     align-items: center;

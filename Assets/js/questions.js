@@ -27,6 +27,24 @@ const question = [
       ]
 
 },
+{
+    question :'String values must be enclosed within_when being assigned to variables.',
+    answer :[
+        {text:'commas',correct:false},
+        {text:'curly bracets',correct:false},
+        {text:'quotes',correct:true},
+        {text:'paranthesas',correct:false},
+    ]
+},
+{
+    question :'A very useful tool used during development and debugging for printing content to the debugger is:',
+    answer :[
+        {text:'JavaScript',correct:true},
+        {text:'terminal/bash',correct:false},
+        {text:'for loops',correct:false},
+        {text:'consol.log',correct:false},  
+    ]
+}
   
 
   ]

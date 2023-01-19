@@ -2,10 +2,14 @@ const startButton =document.getElementById('start')
 const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
 const answerButtonsElement =document.getElementById('answer-buttons')
+const timerEl=document.getElementById('timer');
+
 
 var cardElement=document.querySelector('.card')
 
 var shuffledQuestions, currentQuestionIndex
+var secondsLeft=75;
+
 
 
 startButton.addEventListener('click', startQuiz)
@@ -20,7 +24,17 @@ currentQuestionIndex = 0
 questionContainerElement.classList.remove('hide')
 setNextQuestion()
 }
-
+function startTimer() {
+  timerEl.textContent = secondsLeft;
+  var timerInterval = setInterval(()=> {
+    secondsLeft--;
+    timerEl.textContent = secondsLeft;
+    if(secondsLeft <=0) {
+      clearInterval(timerInterval);
+      endQuiz();
+    }
+  }, 1000);
+}
 function setNextQuestion() {
   
   showQuestion(shuffledQuestions[currentQuestionIndex]);
@@ -44,19 +58,11 @@ function selectAnswer() {
 const selectButton = e.target
 const correct = selectButton.dataset.correct
 setStatusClass(document.body, correct)
-Array.from(answerButtonsElemnt.children).forEach(button => {
+Array.from(answerButtonsElement.children).forEach(button => {
   setStatusClass(button, button.dataset.correct)
 })
 }
-const handleAnswerButtonClick = (answerOption) => {
-	const nextQuestion = currentQuestion + 1;
-	setCurrentQuestion(nextQuestion);
-};
-if (nextQuestion < questions.length) {
-	setCurrentQuestion(nextQuestion);
-} else {
-	alert('end of the quiz');
-}
+
 function clearStatusClass(element, correct){
   clearStatusClass(element)
   if(correct){
