@@ -1,4 +1,4 @@
-const question = [
+const questionsArray = [
     {
       question:'Common use data types DO NOT include:',
       answer:[

@@ -1,83 +1,144 @@
-const startButton =document.getElementById('start')
+const startButton = document.getElementById('start')
 const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
-const answerButtonsElement =document.getElementById('answer-buttons')
-const timerEl=document.getElementById('timer');
+const answerButtonsElement = document.getElementById('answer-buttons')
+const timerEl = document.getElementById('timer');
+const endQuizElement = document.getElementById('end-card');
+const finalScoreSpan = document.getElementById('final-score-span')
+const submitInitialsBtn = document.getElementById('submit-initials-btn');
+var introCardEl = document.getElementById('intro-card');
+console.log(introCardEl);
+
+var shuffledQuestionsArray, currentQuestionIndex
+var timeEl = document.querySelector("timer");
+var secondsLeft = 20;
 
 
-var cardElement=document.querySelector('.card')
-
-var shuffledQuestions, currentQuestionIndex
-var secondsLeft=75;
 
 
 
-startButton.addEventListener('click', startQuiz)
-
-function startQuiz () {
-console.log('started')
-cardElement.classList.add('hide')
-startButton.classList.add('hide')
-questionElement.classList.remove('hide')
-shuffledQuestions=question.sort(()=> Math.random()- .5)
-currentQuestionIndex = 0
-questionContainerElement.classList.remove('hide')
-setNextQuestion()
+function startQuiz() {
+  // start our timer
+  setTime();
+  console.log('started')
+  introCardEl.classList.add('hide')
+  startButton.classList.add('hide')
+  // questionElement.classList.remove('hide')
+  shuffledQuestionsArray = questionsArray.sort(() => Math.random() - .5)
+  currentQuestionIndex = 0
+  questionContainerElement.classList.remove('hide')
+  // setNextQuestion()
+  showQuestion(shuffledQuestionsArray[currentQuestionIndex]);
 }
-function startTimer() {
-  timerEl.textContent = secondsLeft;
-  var timerInterval = setInterval(()=> {
+
+// Sets interval 
+function setTime() {
+
+  var timerInterval = setInterval(function () {
+    // subtract 1 from the remaining seconds
     secondsLeft--;
+    // set the text content of the timer element
     timerEl.textContent = secondsLeft;
-    if(secondsLeft <=0) {
+
+    if (secondsLeft <= 0) {
+      // stop our set interval function from continuing
       clearInterval(timerInterval);
       endQuiz();
     }
+
   }, 1000);
 }
-function setNextQuestion() {
-  
-  showQuestion(shuffledQuestions[currentQuestionIndex]);
 
+// function setNextQuestion() {
+//   showQuestion(shuffledQuestionsArray[currentQuestionIndex]);
+// }
+
+function endQuiz() {
+  console.log('endQuiz function ran');
+  questionContainerElement.classList.add('hide');
+  endQuizElement.classList.remove('hide');
+  finalScoreSpan.textContent = secondsLeft;
 }
-function showQuestion(question){
-  questionElement.innerText = question.question
-  question.answer.forEach(answer =>{
-    const button = document.createElement('button')
-    button.classList.add('btn')
+
+function showQuestion(question) {
+  // clear out the children of our answer buttons element container
+  answerButtonsElement.replaceChildren();
+  // set the question element text to the current question
+  questionElement.innerText = question.question;
+  // for each answer choice, do the following
+  question.answer.forEach(answer => {
+    // create a button
+    const button = document.createElement('button');
+    // add a class to the button
+    button.classList.add('btn');
+    // set the button text
     button.innerHTML = answer.text
-    if(answer.correct){
+    // add a dataset attribute if the answer is the correct one
+    if (answer.correct) {
       button.dataset.correct = answer.correct
     }
+    // add an event listener to the button
     button.addEventListener('click', selectAnswer)
-    answerButtonsElement.appendChild(button)
+    // append the button to the DOM
+    answerButtonsElement.appendChild(button);
   })
 }
 
-function selectAnswer() {
-const selectButton = e.target
-const correct = selectButton.dataset.correct
-setStatusClass(document.body, correct)
-Array.from(answerButtonsElement.children).forEach(button => {
-  setStatusClass(button, button.dataset.correct)
-})
+function selectAnswer(e) {
+  // target the clicked-on button
+  const selectButton = e.target
+
+  const hasDataAttribute = selectButton.dataset.correct
+  console.log('correct is', hasDataAttribute);
+  // now that the user seelected an answer, determine if it's right or wrong
+  // and if it's wrong subtract time. In either case, move on to the next question
+
+
+  // if selected answer does not have data attribute, subtract time
+  if(!hasDataAttribute) {
+    secondsLeft = secondsLeft - 4;
+
+  }
+
+  // increment question index by 1
+  currentQuestionIndex++;
+  // proceed to the next question
+  showQuestion(shuffledQuestionsArray[currentQuestionIndex]);
+
+  // setStatusClass(document.body, hasDataAttribute)
+  // Array.from(answerButtonsElement.children).forEach(button => {
+  //   setStatusClass(button, button.dataset.correct)
+  // })
 }
 
-function clearStatusClass(element, correct){
+// function savedUserInitialsAndScore(userObj) {
+//   // create an object to store user initials and score
+//   var userInfo = {
+//     initials = document.querySelector("#initials-input").value; // you want the value of the input
+//     score: secondsLeft
+//   }
+
+  // save this to local storage
+
+  // 
+//}
+
+function clearStatusClass(element, correct) {
   clearStatusClass(element)
-  if(correct){
+  if (correct) {
     element.classList.add('correct')
-  }else{
+  } else {
     element.classList.add('wrong')
   }
-  
+
 }
-function clearStatusClass(element){
+
+function clearStatusClass(element) {
   element.classList.remove('correct')
   element.classList.remove('wrong')
 }
 
 
+startButton.addEventListener('click', startQuiz)
+submitInitialsBtn.addEventListener('click', savedUserInitialsAndScore);
 
-
- 

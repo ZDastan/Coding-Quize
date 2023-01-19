@@ -1,57 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coding-Quiz</title>
     <link rel="stylesheet" href="./Assets/css/style.css" />
-   
+
 </head>
+
 <body>
 
-   <div class="header">
+    <div class="header">
         <div id="top">
             <a href="./highscores.html" id="viewHighScore">View High Scores</a>
         </div>
         <div class="time-start">
-            <h3 class="minute">Time:<span id="timer">75</span></h3> 
+            <h3 class="minute">Time: <span id="timer">20</span></h3>
         </div>
     </div>
-   
-        <div class="card">
-            <h1>Coding Quiz Challage</h1>
-            <p>
-                Try to answer the following code-related questions within the time limit.Keep in mind that incorrect <br>
-                answers will penolize your score time by the seconds.
-            </p>
-            
-            <button id="start" class="btn" >Start Quiz</button>
-        
-        </div >
-        <div class="card">
+
+    <div class="card" id="intro-card">
+        <h1>Coding Quiz Challage</h1>
+        <p>
+            Try to answer the following code-related questions within the time limit.Keep in mind that incorrect <br>
+            answers will penolize your score time by the seconds.
+        </p>
+
+        <button id="start" class="btn">Start Quiz</button>
+
+    </div>
+    <div class="card">
         <div id="question-container" class="hide">
             <div id="question">
-    
             </div>
             <div id="answer-buttons">
-    
             </div>
         </div>
-        <div class="card" class="hide">
+
+        <div class="card hide" id="end-card">
             <h2>All Done!</h2>
-            <h3>Your final score is:</h3>
+            <h3>Your final score is: <span id="final-score-span"></span></h3>
             <form action="/action_page.php">
                 <label for="Innitial">Enter Innitial: </label>
-                <input type="text" id="score"><br><br>
-                <input type="submit" value="Submit" class="btn">
-              </form>
+                <input type="text" id="initials-input"><br><br>
+                <input type="submit" value="Submit" class="btn" id="submit-initials-btn">
+            </form>
         </div>
-        
+    </div>
 
 
-    
-    <script src="./Assets/js/questions.js"></script> 
-    <script src="./Assets/js/script.js"></script> 
+
+    <script src="./Assets/js/questions.js"></script>
+    <script src="./Assets/js/script.js"></script>
 </body>
+
 </html>
