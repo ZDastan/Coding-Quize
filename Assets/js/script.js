@@ -1,10 +1,10 @@
-const startButton = document.getElementById('start')
-const questionContainerElement = document.getElementById('question-container')
-const questionElement = document.getElementById('question')
-const answerButtonsElement = document.getElementById('answer-buttons')
+const startButton = document.getElementById('start');
+const questionContainerElement = document.getElementById('question-container');
+const questionElement = document.getElementById('question');
+const answerButtonsElement = document.getElementById('answer-buttons');
 const timerEl = document.getElementById('timer');
 const endQuizElement = document.getElementById('end-card');
-const finalScoreSpan = document.getElementById('final-score-span')
+const finalScoreSpan = document.getElementById('final-score-span');
 const submitInitialsBtn = document.getElementById('submit-initials-btn');
 var introCardEl = document.getElementById('intro-card');
 console.log(introCardEl);
@@ -49,9 +49,7 @@ function setTime() {
   }, 1000);
 }
 
-// function setNextQuestion() {
-//   showQuestion(shuffledQuestionsArray[currentQuestionIndex]);
-// }
+
 
 function endQuiz() {
   console.log('endQuiz function ran');
@@ -105,23 +103,9 @@ function selectAnswer(e) {
   // proceed to the next question
   showQuestion(shuffledQuestionsArray[currentQuestionIndex]);
 
-  // setStatusClass(document.body, hasDataAttribute)
-  // Array.from(answerButtonsElement.children).forEach(button => {
-  //   setStatusClass(button, button.dataset.correct)
-  // })
+  
 }
 
-// function savedUserInitialsAndScore(userObj) {
-//   // create an object to store user initials and score
-//   var userInfo = {
-//     initials = document.querySelector("#initials-input").value; // you want the value of the input
-//     score: secondsLeft
-//   }
-
-  // save this to local storage
-
-  // 
-//}
 
 function clearStatusClass(element, correct) {
   clearStatusClass(element)
