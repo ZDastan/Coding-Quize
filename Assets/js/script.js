@@ -19,7 +19,7 @@ var listOfHighScores = document.getElementById("listOfHighScores");
 
 var correctAns = 0;
 var questionNum = 0;
-var scoreResult;
+var currentScore = 0;
 var questionIndex = 0;
 
 
@@ -102,7 +102,7 @@ function selectAnswer(e) {
 
   // if selected answer does not have data attribute, subtract time
   if(!hasDataAttribute) {
-    secondsLeft = secondsLeft - 4;
+    secondsLeft = secondsLeft  - 5;
 
   }
 
@@ -153,7 +153,29 @@ function clearStatusClass(element) {
   element.classList.remove('wrong')
 }
 
+function handleSubmit() {
+  let initials = initialsEl.value;
+  // get array from storage, or initialize as empty array
+  let highScoresList = JSON.parse(localStorage.getItem('highScores')) || [];
+  // push new score to array
+  highScoresList.push({ initials: initials, score: finalScore });
+  // sort array ascending
+  highScoresList = highScoresList.sort((curr, next) => {
+      if (curr.score < next.score) {
+          return 1
+      } else if (curr.score > next.score) {
+          return -1
+      } else {
+          return 0
+      }
+  });
+  // set updated array to local storage
+  localStorage.setItem('highScores', JSON.stringify(highScoresList))
+  // go to highscores page
+  window.location.href = './highscores.html';
+}
 
 startButton.addEventListener('click', startQuiz)
+submitInitialsBtn.addEventListener('click', savedUserInitialsAndScore);
 
 
