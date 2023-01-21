@@ -13,8 +13,14 @@ var shuffledQuestionsArray, currentQuestionIndex
 var timeEl = document.querySelector("timer");
 var secondsLeft = 20;
 
+var clearHighScoreBtn = document.getElementById("clearHighScoreBtn"); 
+var viewHighScore = document.getElementById("viewHighScore");
+var listOfHighScores = document.getElementById("listOfHighScores");
 
-
+var correctAns = 0;
+var questionNum = 0;
+var scoreResult;
+var questionIndex = 0;
 
 
 function startQuiz() {
@@ -106,6 +112,29 @@ function selectAnswer(e) {
   
 }
 
+function checkAnswer(answer) {
+
+  if (questions[questionIndex].answer === questions[questionIndex].choices[answer]) {
+      // correct answer, add 1 score to final score
+      correctAns++;
+      // console.log(correctAns);
+      answerCheck.textContent = "Correct!";
+  } else {
+      // wrong answer, deduct 10 second from timer
+      totalTime -= 10;
+      timeLeft.textContent = totalTime;
+      answerCheck.textContent = "Wrong! The correct answer is: " + questions[questionIndex].answer;
+  }
+
+  questionIndex++;
+  // repeat with the rest of questions 
+  if (questionIndex < questions.length) {
+      nextQuestion();
+  } else {
+      // if no more question, run game over function
+      gameOver();
+  }
+}
 
 function clearStatusClass(element, correct) {
   clearStatusClass(element)
@@ -124,5 +153,5 @@ function clearStatusClass(element) {
 
 
 startButton.addEventListener('click', startQuiz)
-submitInitialsBtn.addEventListener('click', savedUserInitialsAndScore);
+
 
