@@ -23,6 +23,8 @@ var scoreResult;
 var questionIndex = 0;
 
 
+
+
 function startQuiz() {
   // start our timer
   setTime();
@@ -123,7 +125,7 @@ function checkAnswer(answer) {
       // wrong answer, deduct 10 second from timer
       totalTime -= 10;
       timeLeft.textContent = totalTime;
-      answerCheck.textContent = "Wrong! The correct answer is: " + questions[questionIndex].answer;
+      answerCheck.textContent = "Wrong!" ;
   }
 
   questionIndex++;
