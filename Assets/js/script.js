@@ -7,20 +7,18 @@ const endQuizElement = document.getElementById('end-card');
 const finalScoreSpan = document.getElementById('final-score-span');
 const submitInitialsBtn = document.getElementById('submit-initials-btn');
 var introCardEl = document.getElementById('intro-card');
+const initialsInputElement=document.getElementById('initials-input');
 console.log(introCardEl);
 
 var shuffledQuestionsArray, currentQuestionIndex
 var timeEl = document.querySelector("timer");
 var secondsLeft = 20;
 
-var clearHighScoreBtn = document.getElementById("clearHighScoreBtn"); 
+var clearHighScoreBtn = document.getElementById("clearHighScoreBtn");
 var viewHighScore = document.getElementById("viewHighScore");
 var listOfHighScores = document.getElementById("listOfHighScores");
+var timerInterval
 
-var correctAns = 0;
-var questionNum = 0;
-var currentScore = 0;
-var questionIndex = 0;
 
 
 
@@ -31,7 +29,7 @@ function startQuiz() {
   console.log('started')
   introCardEl.classList.add('hide')
   startButton.classList.add('hide')
-  // questionElement.classList.remove('hide')
+  
   shuffledQuestionsArray = questionsArray.sort(() => Math.random() - .5)
   currentQuestionIndex = 0
   questionContainerElement.classList.remove('hide')
@@ -42,7 +40,7 @@ function startQuiz() {
 // Sets interval 
 function setTime() {
 
-  var timerInterval = setInterval(function () {
+  timerInterval = setInterval(function () {
     // subtract 1 from the remaining seconds
     secondsLeft--;
     // set the text content of the timer element
@@ -61,9 +59,11 @@ function setTime() {
 
 function endQuiz() {
   console.log('endQuiz function ran');
+
   questionContainerElement.classList.add('hide');
   endQuizElement.classList.remove('hide');
   finalScoreSpan.textContent = secondsLeft;
+  
 }
 
 function showQuestion(question) {
@@ -101,41 +101,41 @@ function selectAnswer(e) {
 
 
   // if selected answer does not have data attribute, subtract time
-  if(!hasDataAttribute) {
-    secondsLeft = secondsLeft  - 5;
 
+
+  console.log("asdfffff", currentQuestionIndex, shuffledQuestionsArray.length)
+  if (currentQuestionIndex < shuffledQuestionsArray.length) {
+    // increment question index by 1
+    currentQuestionIndex++;
+    // proceed to the next question
+    showQuestion(shuffledQuestionsArray[currentQuestionIndex]);
+
+
+  } else {
+    clearInterval(timerInterval);
+    endQuiz();
   }
-
-  // increment question index by 1
-  currentQuestionIndex++;
-  // proceed to the next question
-  showQuestion(shuffledQuestionsArray[currentQuestionIndex]);
-
-  
+  if (currentQuestionIndex === shuffledQuestionsArray.length - 1) {
+    clearInterval(timerInterval);
+    endQuiz();
+  }
 }
 
 function checkAnswer(answer) {
 
   if (questions[questionIndex].answer === questions[questionIndex].choices[answer]) {
-      // correct answer, add 1 score to final score
-      correctAns++;
-      // console.log(correctAns);
-      answerCheck.textContent = "Correct!";
+    // correct answer, add 1 score to final score
+    correctAns++;
+    console.log(correctAns);
+    
   } else {
-      // wrong answer, deduct 10 second from timer
-      totalTime -= 10;
-      timeLeft.textContent = totalTime;
-      answerCheck.textContent = "Wrong!" ;
+    // wrong answer, deduct 10 second from timer
+    totalTime -= 10;
+    timeLeft.textContent = totalTime;
+    // answerCheck.textContent = "Wrong!" ;
   }
 
-  questionIndex++;
-  // repeat with the rest of questions 
-  if (questionIndex < questions.length) {
-      nextQuestion();
-  } else {
-      // if no more question, run game over function
-      gameOver();
-  }
+ 
 }
 
 function clearStatusClass(element, correct) {
@@ -153,29 +153,24 @@ function clearStatusClass(element) {
   element.classList.remove('wrong')
 }
 
-function handleSubmit() {
-  let initials = initialsEl.value;
+function handleSubmit(e) {
+  e.preventDefault()
+  clearInterval(secondsLeft)
+  var finalScore = secondsLeft
   // get array from storage, or initialize as empty array
-  let highScoresList = JSON.parse(localStorage.getItem('highScores')) || [];
+  var highScoresList = JSON.parse(localStorage.getItem('highScores')) || [];
   // push new score to array
-  highScoresList.push({ initials: initials, score: finalScore });
-  // sort array ascending
-  highScoresList = highScoresList.sort((curr, next) => {
-      if (curr.score < next.score) {
-          return 1
-      } else if (curr.score > next.score) {
-          return -1
-      } else {
-          return 0
-      }
-  });
+  highScoresList.push({ initials:initialsInputElement.value, score: finalScore });
+
   // set updated array to local storage
   localStorage.setItem('highScores', JSON.stringify(highScoresList))
   // go to highscores page
-  window.location.href = './highscores.html';
+  window.location.href = 'highscore.html';
+
 }
 
-startButton.addEventListener('click', startQuiz)
-submitInitialsBtn.addEventListener('click', savedUserInitialsAndScore);
+submitInitialsBtn.addEventListener('click' ,handleSubmit);
+startButton.addEventListener('click', startQuiz);
+
 
 

@@ -1,4 +1,4 @@
-var highScore = document.querySelector("#highScoreList");
+var highScore = document.querySelector("#highscores-list");
 var clearHighScores = document.querySelector("#clear");
 var tryAgain = document.querySelector("#tryAgain");
 
@@ -9,5 +9,12 @@ clear.addEventListener("click", function () {
 });
 
 // Retreives local stroage 
-var allScores = localStorage.getItem("allScores");
+var allScores = localStorage.getItem("highScores");
 allScores = JSON.parse(allScores);
+console.log(allScores);
+allScores.forEach(element => {
+   let score=document.createElement('p')
+   score.textContent=`initials: ${element.initials} score: ${element.score}`
+   highScore.appendChild(score)
+});
+
