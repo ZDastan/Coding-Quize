@@ -1,0 +1,33 @@
+# Coding Quiz
+
+## Description
+
+Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
+
+-It was great project to be take part.I creat coding quiz with five question and in the end you submit your inittial and get final score.
+-i had a quite serious problem to set question Aray to work well.
+-I lear so much about combine thre main language (html,css and Javascript) and how important to id and classes in righ place.
+
+
+## Usage
+
+
+
+
+![alt text](./Assets/image/Screenshot%202023-01-27%20at%2015.16.48.png)
+
+
+## License
+
+The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to [https://choosealicense.com/](https://choosealicense.com/).
+
+---
+
+🏆 The previous sections are the bare minimum, and your project will ultimately determine the content of this document. You might also want to consider adding the following sections.
+
+## Badges
+
+![badmath](https://img.shields.io/github/languages/top/nielsenjared/badmath)
+
+Badges aren't necessary, but they demonstrate street cred. Badges let other developers know that you know what you're doing. Check out the badges hosted by [shields.io](https://shields.io/). You may not understand what they all represent now, but you will in time.
+
